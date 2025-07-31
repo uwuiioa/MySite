@@ -1,0 +1,154 @@
+/* Общий стиль страницы */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #ffe6f0;
+    overflow: hidden;
+    position: relative;
+    overflow-y: auto;
+}
+
+/* Фон с изображением (можешь заменить) */
+.wallpaper {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url('https://i.pinimg.com/originals/5c/00/1a/5c001a1afe5287f05618ecbde25c309a.gif');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* Центрированный контейнер для контента */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    backdrop-filter: blur(4px); /* легкое размытие фона для читаемости */
+}
+
+/* Заголовок */
+h1 {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 2.5em;
+    color: #ad4877;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Стиль для описательного текста */
+p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    max-width: 800px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Заголовок для слов для перетаскивания */
+h2 {
+    font-size: 1.8em;
+    color: #8d4575;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Контейнер со словами для перетаскивания */
+#words-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+/* Стиль для перетаскиваемых слов */
+.draggable {
+    padding: 10px 20px;
+    background-color: #d4bace;
+    border: 2px solid #72526f;
+    border-radius: 10px;
+    cursor: grab;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.draggable:active {
+    cursor: grabbing;
+    transform: scale(0.95);
+    background-color: #ff69b4;
+}
+
+/* Стиль для зон вставки */
+.dropzone {
+    display: inline-block;
+    min-width: 150px;
+    min-height: 30px;
+    padding: 5px 10px;
+    margin: 0 8px;
+    border-bottom: 3px dashed #990066;
+    border-radius: 4px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #fff0f5;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+.dropzone:hover {
+    background-color: #ffe4e1;
+    box-shadow: 0 0 8px rgba(153, 0, 102, 0.3);
+}
+
+/* Визуальная подсказка при перетаскивании */
+.dragover {
+    background-color: #ffe4e1 !important;
+}
+
+/* Обертка для текста с отступами и рамкой */
+.diploma-box {
+    max-width: 800px; /* ширина блока, можно изменить */
+    margin: 20px auto; /* отступы сверху и снизу, по центру */
+    padding: 20px; /* внутренние отступы */
+    border: 3px solid #663462; /* цвет и толщина рамки */
+    border-radius: 12px; /* скругление углов */
+    background-color: rgb(226, 207, 226); /* полупрозрачный фон для читаемости, опционально */
+}
+
+/* Для текста внутри блока, если нужно */
+.diploma-box p {
+    margin: 0; /* убираем отступы внутри */
+    line-height: 1.5;
+}
+
+/* Кнопки */
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Общий стиль для обеих кнопок */
+.yes-button {
+    padding: 15px 30px;
+    background-color: #ff66b2; /* можно оставить цвет "Да", если нужно и для "Нет" */
+    color: #fff;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: auto; /* одинаковая ширина */
+    height: auto; /* одинаковая высота */
+    transition: background 0.3s;
+    position: relative;
+}
+
+/* Эффект при наведении */
+.yes-button:hover {
+    background-color: #e055b2; /* чуть темнее при наведении */
+}

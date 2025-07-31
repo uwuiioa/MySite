@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>💕 Хихи 💕</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+ <!-- Фон -->
+    <div class="wallpaper"></div>
+
+    <!-- Основной контейнер -->
+    <div class="content">
+        <h1>Победило любопытство или желание быть со мной?)</h1>
+        <img src="https://tenor.com/ru/view/anya-spy-x-family-anime-spy-x-family-anya-spy-x-family-anya-proud-anya-smirk-face-gif-25998837.gif" alt="я джифка" class="gif-image" style="max-width: 80vw; height: auto; margin-bottom: 20px;">
+        <p>Независимо от того, через что нам придется пройти с тобой, я уверена, мы справимся! <br>
+        Для закрепления нашего союза нажми на кнопку. <br>
+        Люблю тебя, солнце!
+        </p>
+    
+    <div class="buttons" style="margin-top:20px;">
+        <a href="index3.html" class="yes-button">Жмяк</a>
+    </div>
+    </div>
+
+<script>
+// Работа с музыкой
+    function setupMusic() {
+        const music = document.getElementById('backgroundMusic');
+
+        music.volume = 0.2;
+
+        const isMusicPlaying = localStorage.getItem('musicPlaying') === 'true';
+        const musicCurrentTime = localStorage.getItem('musicCurrentTime') || 0;
+
+        if (isMusicPlaying) {
+            music.currentTime = parseFloat(musicCurrentTime);
+            music.play();
+        }
+
+        // Обновление статуса воспроизведения
+        music.addEventListener('play', () => {
+            localStorage.setItem('musicPlaying', 'true');
+        });
+        music.addEventListener('pause', () => {
+            localStorage.setItem('musicPlaying', 'false');
+        });
+
+        // Сохраняем время
+        setInterval(() => {
+            localStorage.setItem('musicCurrentTime', music.currentTime);
+        }, 1000);
+
+        // Автоматический запуск при клике
+        document.addEventListener('click', function startMusic() {
+            music.play().catch(error => {
+                console.log('Autoplay prevented', error);
+            });
+            document.removeEventListener('click', startMusic);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', setupMusic);
+</script>
+
+<!-- Музыка -->
+    <audio id="backgroundMusic" loop>
+        <source src="assets/2hollis.mp3" type="audio/mpeg" />
+        Ваш браузер не поддерживает аудио.
+    </audio>
+
+</body>
+</html>

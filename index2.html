@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>💕 Хихи 💕</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+ <!-- Фон -->
+    <div class="wallpaper"></div>
+
+    <!-- Основной контейнер -->
+    <div class="content">
+        <h1>Вот ты и попалась!</h1>
+        <p>Теперь мы связаны. Для того, чтобы расторгнуть брак тебе необходимо кое-что сделать..</p>
+        <p>Или ты не хочешь этого?</p>
+        <p>В любом случае у тебя есть выбор.</p>
+        <!-- Например, изображение или текст -->
+        <img src="https://tenor.com/ru/view/forehead-kiss-anime-gif-25470471.gif" alt="я джифка" class="gif-image" style="max-width: 80vw; height: auto; margin-bottom: 20px;">
+
+        <div class="buttons" style="margin-top:20px;">
+            <a href="#" id="break-up-btn" class="yes-button">Расторгнуть брак</a>
+            <a href="index4.html" class="yes-button">Узнать, что будет дальше</a>
+        </div>
+    </div>
+
+    <!-- Мини-игра (скрытая по умолчанию) -->
+    <div id="game-container" style="display:none; text-align: center; margin-top: 30px;">
+        <h2>Кликни на гифку, чтобы разорвать брак!</h2>
+        <img src="https://tenor.com/ru/view/anime-spy-x-family-spy-family-becky-run-gif-1545234923412402584.gif" alt="Кнопка разорвать" id="break-image" style="width: 200px; cursor: pointer;">
+        <div id="game-message" style="display:none; font-size: 1.5em; color: #cc0066; margin-top: 20px;">Вот и все! Брак расторгнут!</div>
+        <p>Но если ты все же передумаешь..</p>
+    </div>
+
+    <div class="buttons" style="margin-top:20px;">
+            <a href="index2.html" class="yes-button">Вернуться</a>
+        </div>
+
+    <script>
+const btn = document.querySelector('.content a[href="#"]'); // или по id, если есть
+const mainContent = document.querySelector('.content');
+const gameContainer = document.getElementById('game-container');
+const gameMessage = document.getElementById('game-message');
+const breakImage = document.getElementById('break-image');
+
+let clicks = 0;
+const targetClicks = 20;
+
+document.querySelector('.content').querySelector('#break-up-btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  mainContent.style.display = 'none'; // скрываем основной контент
+  gameContainer.style.display = 'block'; // показываем игру
+  clicks = 0;
+  gameMessage.style.display = 'none'; // скрываем сообщение
+});
+
+breakImage.addEventListener('click', function() {
+  clicks++;
+  breakImage.style.transform = 'scale(1.2)';
+  setTimeout(() => {
+    breakImage.style.transform = 'scale(1)';
+  }, 100);
+  if (clicks >= targetClicks) {
+    gameMessage.style.display = 'block';
+  }
+});
+</script>
+
+<script>
+// Работа с музыкой
+    function setupMusic() {
+        const music = document.getElementById('backgroundMusic');
+
+        music.volume = 0.2;
+
+        const isMusicPlaying = localStorage.getItem('musicPlaying') === 'true';
+        const musicCurrentTime = localStorage.getItem('musicCurrentTime') || 0;
+
+        if (isMusicPlaying) {
+            music.currentTime = parseFloat(musicCurrentTime);
+            music.play();
+        }
+
+        // Обновление статуса воспроизведения
+        music.addEventListener('play', () => {
+            localStorage.setItem('musicPlaying', 'true');
+        });
+        music.addEventListener('pause', () => {
+            localStorage.setItem('musicPlaying', 'false');
+        });
+
+        // Сохраняем время
+        setInterval(() => {
+            localStorage.setItem('musicCurrentTime', music.currentTime);
+        }, 1000);
+
+        // Автоматический запуск при клике
+        document.addEventListener('click', function startMusic() {
+            music.play().catch(error => {
+                console.log('Autoplay prevented', error);
+            });
+            document.removeEventListener('click', startMusic);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', setupMusic);
+</script>
+
+<!-- Музыка -->
+    <audio id="backgroundMusic" loop>
+        <source src="assets/2hollis.mp3" type="audio/mpeg" />
+        Ваш браузер не поддерживает аудио.
+    </audio>
+</body>
+</html>

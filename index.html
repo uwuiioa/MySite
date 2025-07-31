@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>💕 Хихи 💕</title>
+<link rel="stylesheet" href="css/style.css" />
+
+<script>
+    // Функция для случайного перемещения кнопки "Нет"
+    function pryg_skok() {
+        const btn = document.getElementById("knopka");
+        const maxWidth = window.innerWidth - btn.offsetWidth;
+        const maxHeight = window.innerHeight - btn.offsetHeight;
+
+    // Генерируем случайные координаты
+    let randLeft = Math.random() * maxWidth;
+    let randTop = Math.random() * maxHeight;
+
+    // Ограничиваем координаты, чтобы кнопка не вышла за границы
+    randLeft = Math.max(0, Math.min(randLeft, maxWidth));
+    randTop = Math.max(0, Math.min(randTop, maxHeight));
+
+    // Устанавливаем позицию
+    btn.style.position = 'absolute'; // убедиться, что позиционирование включено
+    btn.style.left = randLeft + "px";
+    btn.style.top = randTop + "px";
+    }
+
+    // Работа с музыкой
+    function setupMusic() {
+        const music = document.getElementById('backgroundMusic');
+
+        music.volume = 0.2;
+
+        const isMusicPlaying = localStorage.getItem('musicPlaying') === 'true';
+        const musicCurrentTime = localStorage.getItem('musicCurrentTime') || 0;
+
+        if (isMusicPlaying) {
+            music.currentTime = parseFloat(musicCurrentTime);
+            music.play();
+        }
+
+        // Обновление статуса воспроизведения
+        music.addEventListener('play', () => {
+            localStorage.setItem('musicPlaying', 'true');
+        });
+        music.addEventListener('pause', () => {
+            localStorage.setItem('musicPlaying', 'false');
+        });
+
+        // Сохраняем время
+        setInterval(() => {
+            localStorage.setItem('musicCurrentTime', music.currentTime);
+        }, 1000);
+
+        // Автоматический запуск при клике
+        document.addEventListener('click', function startMusic() {
+            music.play().catch(error => {
+                console.log('Autoplay prevented', error);
+            });
+            document.removeEventListener('click', startMusic);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', setupMusic);
+</script>
+
+</head>
+<body>
+    <!-- Фон -->
+    <div class="wallpaper"></div>
+
+    <!-- Основной контейнер -->
+    <div class="content">
+        <h1>Ты будешь моей женой?</h1>
+        <p>Тсс...можешь нажать на любое свободное место для атмосферы</p>
+        <img src="https://tenor.com/ru/view/saenai-heroine-no-sodatekata-saekano-eriri-spencer-sawamura-blush-anime-gif-24112466.gif" alt="я джифка" class="gif-image">
+        <div class="buttons">
+            <a href="index2.html" class="yes-button">Да</a>
+            <input type="button" id="knopka" value="Нет" class="yes-button" onMouseOver="pryg_skok()" onClick="alert('Вау, ты все-таки нажал!!!')">
+        </div>
+    </div>
+
+    <!-- Музыка -->
+    <audio id="backgroundMusic" loop>
+        <source src="assets/2hollis.mp3" type="audio/mpeg" />
+        Ваш браузер не поддерживает аудио.
+    </audio>
+</body>
+</html>
